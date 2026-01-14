@@ -227,7 +227,7 @@ export const STATIC_TRIP_PLAN_EN: TripPlan = {
       coordinates: { lat: 35.6465, lng: 139.7869 },
       tabelogRating: 3.65,
       tabelogUrl: "https://tabelog.com/en/tokyo/A1313/A131307/13227096/",
-      imageUrl: "https://tblg.k-img.com/restaurant/images/Rvw/321079/640x640_rect_e95256b4b96e6aabbb02d9e4e5c8469e.jpg"
+      imageUrl: "https://static.gltjp.com/glt/data/directory/18000/17059/20250713_023805_d87a2f4a_w640.webp"
     },
     {
       name: "Sankouen (三幸園)",
@@ -237,7 +237,7 @@ export const STATIC_TRIP_PLAN_EN: TripPlan = {
       coordinates: { lat: 35.6559, lng: 139.7359 },
       tabelogRating: 3.52,
       tabelogUrl: "https://tabelog.com/en/tokyo/A1307/A130702/13002823/",
-      imageUrl: "https://tblg.k-img.com/restaurant/images/Rvw/112660/640x640_rect_112660756.jpg"
+      imageUrl: "https://www.justonecookbook.com/wp-content/uploads/2023/08/Yakiniku-2308-I-1.jpg"
     },
     {
       name: "Ginza Katsukami 2 (かつかみ弐)",
@@ -247,7 +247,7 @@ export const STATIC_TRIP_PLAN_EN: TripPlan = {
       coordinates: { lat: 35.6700, lng: 139.7627 },
       tabelogRating: 3.58,
       tabelogUrl: "https://tabelog.com/en/tokyo/A1301/A130101/13225476/",
-      imageUrl: "https://tblg.k-img.com/restaurant/images/Rvw/153169/640x640_rect_153169722.jpg"
+      imageUrl: "https://therantingpanda.com/wp-content/uploads/2024/06/eimg_5910.jpg"
     },
     {
       name: "Gyutan no Lemon (牛タンの檸檬)",
@@ -257,7 +257,7 @@ export const STATIC_TRIP_PLAN_EN: TripPlan = {
       coordinates: { lat: 35.6961, lng: 139.6979 },
       tabelogRating: 3.45,
       tabelogUrl: "https://tabelog.com/en/tokyo/A1304/A130401/13264721/",
-      imageUrl: "https://tblg.k-img.com/restaurant/images/Rvw/248736/640x640_rect_6d32f903d38eb7ee6c263fb0185983fd.jpg"
+      imageUrl: "https://www.justonecookbook.com/wp-content/uploads/2012/07/Gyutan-BBQ-Beef-Tongue.jpg"
     },
     {
       name: "Stabler Shimokitazawa",
@@ -267,7 +267,7 @@ export const STATIC_TRIP_PLAN_EN: TripPlan = {
       coordinates: { lat: 35.6609, lng: 139.6685 },
       tabelogRating: 3.40,
       tabelogUrl: "https://tabelog.com/en/tokyo/A1318/A131802/13254078/",
-      imageUrl: "https://tblg.k-img.com/restaurant/images/Rvw/233456/640x640_rect_89a1f3d5e7c9b2a4f6d8e1c3a5b7f9d2.jpg"
+      imageUrl: "https://chueonit.com/wp-content/uploads/2023/05/stabler-shimokitazawa-meatsand-2nd-sandwich-2.jpg?w=620"
     }
   ],
   days: [
@@ -955,7 +955,7 @@ export const STATIC_TRIP_PLAN_ZH: TripPlan = {
     coordinates: { lat: 35.6465, lng: 139.7869 },
     tabelogRating: 3.65,
     tabelogUrl: "https://tabelog.com/en/tokyo/A1313/A131307/13227096/",
-    imageUrl: "https://tblg.k-img.com/restaurant/images/Rvw/321079/640x640_rect_e95256b4b96e6aabbb02d9e4e5c8469e.jpg"
+    imageUrl: "https://static.gltjp.com/glt/data/directory/18000/17059/20250713_023805_d87a2f4a_w640.webp"
   },
   {
     name: "三幸園 麻布十番",
@@ -965,7 +965,7 @@ export const STATIC_TRIP_PLAN_ZH: TripPlan = {
     coordinates: { lat: 35.6559, lng: 139.7359 },
     tabelogRating: 3.52,
     tabelogUrl: "https://tabelog.com/en/tokyo/A1307/A130702/13002823/",
-    imageUrl: "https://tblg.k-img.com/restaurant/images/Rvw/112660/640x640_rect_112660756.jpg"
+    imageUrl: "https://www.justonecookbook.com/wp-content/uploads/2023/08/Yakiniku-2308-I-1.jpg"
   },
   {
     name: "銀座 かつかみ弐",
@@ -975,7 +975,7 @@ export const STATIC_TRIP_PLAN_ZH: TripPlan = {
     coordinates: { lat: 35.6700, lng: 139.7627 },
     tabelogRating: 3.58,
     tabelogUrl: "https://tabelog.com/en/tokyo/A1301/A130101/13225476/",
-    imageUrl: "https://tblg.k-img.com/restaurant/images/Rvw/153169/640x640_rect_153169722.jpg"
+    imageUrl: "https://therantingpanda.com/wp-content/uploads/2024/06/eimg_5910.jpg"
   },
   {
     name: "牛タンの檸檬 新宿",
@@ -985,7 +985,7 @@ export const STATIC_TRIP_PLAN_ZH: TripPlan = {
     coordinates: { lat: 35.6961, lng: 139.6979 },
     tabelogRating: 3.45,
     tabelogUrl: "https://tabelog.com/en/tokyo/A1304/A130401/13264721/",
-    imageUrl: "https://tblg.k-img.com/restaurant/images/Rvw/248736/640x640_rect_6d32f903d38eb7ee6c263fb0185983fd.jpg"
+    imageUrl: "https://www.justonecookbook.com/wp-content/uploads/2012/07/Gyutan-BBQ-Beef-Tongue.jpg"
   },
   {
     name: "Stabler 下北澤",
@@ -995,7 +995,7 @@ export const STATIC_TRIP_PLAN_ZH: TripPlan = {
     coordinates: { lat: 35.6609, lng: 139.6685 },
     tabelogRating: 3.40,
     tabelogUrl: "https://tabelog.com/en/tokyo/A1318/A131802/13254078/",
-    imageUrl: "https://tblg.k-img.com/restaurant/images/Rvw/233456/640x640_rect_89a1f3d5e7c9b2a4f6d8e1c3a5b7f9d2.jpg"
+    imageUrl: "https://chueonit.com/wp-content/uploads/2023/05/stabler-shimokitazawa-meatsand-2nd-sandwich-2.jpg?w=620"
   }
   ],
   days: [

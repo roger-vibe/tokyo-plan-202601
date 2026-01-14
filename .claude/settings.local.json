@@ -31,7 +31,14 @@
       "WebFetch(domain:hk.trip.com)",
       "Bash(git add:*)",
       "Bash(git commit:*)",
-      "Bash(git push)"
+      "Bash(git push)",
+      "WebFetch(domain:www.trip.com)",
+      "WebFetch(domain:danielfooddiary.com)",
+      "WebFetch(domain:therantingpanda.com)",
+      "WebFetch(domain:blog.japanwondertravel.com)",
+      "WebFetch(domain:chueonit.com)",
+      "WebFetch(domain:www.gltjp.com)",
+      "WebFetch(domain:www.justonecookbook.com)"
     ]
   }
 }

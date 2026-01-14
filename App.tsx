@@ -3,7 +3,7 @@ import { Language, Theme, TripPlan, Coordinates, Activity, TransitInfo, Transpor
 import { TRANSLATIONS, STATIC_TRIP_PLAN_EN, STATIC_TRIP_PLAN_ZH } from './constants';
 import Header from './components/Header';
 import MapComponent from './components/MapComponent';
-import { MapPin, X, ArrowLeft, Clock, MapPinned, Lightbulb, ArrowDown, Footprints, ExternalLink, Train, Bus, Car, Plane, ChevronRight, Utensils, BedDouble, Star, Phone, Globe, Instagram, Wifi, ParkingCircle, Sparkles, Bath, UtensilsCrossed, ImageIcon, CheckCircle2 } from 'lucide-react';
+import { MapPin, X, ArrowLeft, Clock, MapPinned, Lightbulb, ArrowDown, Footprints, ExternalLink, Train, Bus, Car, Plane, ChevronRight, Utensils, BedDouble, Star, Phone, Globe, Instagram, Wifi, ParkingCircle, Sparkles, Bath, UtensilsCrossed, ImageIcon, CheckCircle2, FileText, CreditCard, IdCard } from 'lucide-react';
 
 const App: React.FC = () => {
   const [theme, setTheme] = useState<Theme>('dark');
@@ -23,6 +23,7 @@ const App: React.FC = () => {
   const daysCount = tripPlan.days.length;
   const foodTabIndex = daysCount;
   const infoTabIndex = daysCount + 1;
+  const carRentalTabIndex = daysCount + 2;
 
   // Apply theme
   useEffect(() => {
@@ -230,6 +231,30 @@ const App: React.FC = () => {
                    <span className="font-serif-jp text-sm whitespace-nowrap">{language === 'zh-TW' ? '資訊' : 'Info'}</span>
                 </div>
                  {activeTab === infoTabIndex && (
+                  <div className="absolute top-0 left-0 w-full h-[3px] bg-gradient-to-r from-[var(--hakone-forest)] to-[var(--hakone-pine)]" />
+                )}
+                <div className="absolute right-0 top-1/2 -translate-y-1/2 w-px h-6 bg-[var(--hakone-border)]" />
+            </button>
+
+            {/* Car Rental Tab */}
+            <button
+                onClick={() => setActiveTab(carRentalTabIndex)}
+                className={`
+                  snap-start flex-none
+                  w-[28vw] md:w-[22vw] lg:flex-1 lg:w-auto
+                  relative py-4 transition-all outline-none cursor-pointer
+                  ${activeTab === carRentalTabIndex
+                    ? 'text-[var(--hakone-forest)]'
+                    : 'text-[var(--hakone-ink-light)] hover:text-[var(--hakone-ink)]'
+                  }`}
+            >
+               <div className="flex flex-col items-center gap-1">
+                   <span className={`text-[10px] uppercase tracking-[0.2em] font-medium transition-colors ${activeTab === carRentalTabIndex ? 'text-[var(--hakone-forest)]' : ''}`}>
+                     Rental
+                   </span>
+                   <span className="font-serif-jp text-sm whitespace-nowrap">{language === 'zh-TW' ? '租車' : 'Car'}</span>
+                </div>
+                 {activeTab === carRentalTabIndex && (
                   <div className="absolute top-0 left-0 w-full h-[3px] bg-gradient-to-r from-[var(--hakone-forest)] to-[var(--hakone-pine)]" />
                 )}
             </button>
@@ -488,6 +513,155 @@ const App: React.FC = () => {
                     ))}
                  </ul>
               </section>
+            </div>
+          )}
+
+          {/* CAR RENTAL TAB - Trip.com Documents */}
+          {activeTab === carRentalTabIndex && (
+            <div className="space-y-6 animate-[fadeIn_0.5s_ease-out]">
+              {/* Header */}
+              <div className="flex items-center gap-4 mb-8 border-b border-[var(--hakone-border)] pb-4">
+                <div className="w-12 h-12 bg-gradient-to-br from-[var(--hakone-lake)] to-[var(--hakone-forest)] flex items-center justify-center text-white rounded-lg">
+                  <Car size={24} />
+                </div>
+                <div>
+                  <h3 className="text-2xl font-bold font-serif-jp text-[var(--hakone-ink)]">
+                    {language === 'zh-TW' ? '租車取車文件' : 'Car Rental Documents'}
+                  </h3>
+                  <p className="text-sm text-[var(--hakone-ink-light)]">
+                    {language === 'zh-TW' ? 'Trip.com 官方指引' : 'Official Trip.com Guidelines'}
+                  </p>
+                </div>
+              </div>
+
+              {/* Required Documents */}
+              <section className="hakone-card rounded-lg p-6">
+                <h4 className="flex items-center gap-2 text-lg font-bold mb-4 text-[var(--hakone-ink)]">
+                  <FileText size={20} className="text-[var(--hakone-forest)]" />
+                  {language === 'zh-TW' ? '必備文件' : 'Required Documents'}
+                </h4>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="flex items-start gap-3 p-4 bg-[var(--hakone-bg-alt)] rounded-lg">
+                    <div className="w-10 h-10 bg-[var(--hakone-forest)]/10 rounded-full flex items-center justify-center flex-shrink-0">
+                      <FileText size={18} className="text-[var(--hakone-forest)]" />
+                    </div>
+                    <div>
+                      <span className="font-bold text-[var(--hakone-ink)]">
+                        {language === 'zh-TW' ? '租車確認單' : 'Rental Confirmation'}
+                      </span>
+                      <p className="text-sm text-[var(--hakone-ink-light)] mt-1">
+                        {language === 'zh-TW' ? '預訂確認憑證副本' : 'Copy of your booking voucher'}
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-3 p-4 bg-[var(--hakone-bg-alt)] rounded-lg">
+                    <div className="w-10 h-10 bg-[var(--hakone-forest)]/10 rounded-full flex items-center justify-center flex-shrink-0">
+                      <IdCard size={18} className="text-[var(--hakone-forest)]" />
+                    </div>
+                    <div>
+                      <span className="font-bold text-[var(--hakone-ink)]">
+                        {language === 'zh-TW' ? '有效駕駛執照' : 'Valid Driver\'s License'}
+                      </span>
+                      <p className="text-sm text-[var(--hakone-ink-light)] mt-1">
+                        {language === 'zh-TW' ? '駕駛人士的有效年期駕駛執照（至少一年有效期）' : 'Valid driving license with at least one year validity'}
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-3 p-4 bg-[var(--hakone-bg-alt)] rounded-lg">
+                    <div className="w-10 h-10 bg-[var(--hakone-forest)]/10 rounded-full flex items-center justify-center flex-shrink-0">
+                      <CreditCard size={18} className="text-[var(--hakone-forest)]" />
+                    </div>
+                    <div>
+                      <span className="font-bold text-[var(--hakone-ink)]">
+                        {language === 'zh-TW' ? '信用卡' : 'Credit Card'}
+                      </span>
+                      <p className="text-sm text-[var(--hakone-ink-light)] mt-1">
+                        {language === 'zh-TW' ? '主駕駛人的信用卡（需有足夠信用額度作押金）' : 'Main driver\'s credit card with sufficient limit for deposit'}
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-3 p-4 bg-[var(--hakone-bg-alt)] rounded-lg">
+                    <div className="w-10 h-10 bg-[var(--hakone-forest)]/10 rounded-full flex items-center justify-center flex-shrink-0">
+                      <Globe size={18} className="text-[var(--hakone-forest)]" />
+                    </div>
+                    <div>
+                      <span className="font-bold text-[var(--hakone-ink)]">
+                        {language === 'zh-TW' ? '身份證明文件' : 'Photo ID'}
+                      </span>
+                      <p className="text-sm text-[var(--hakone-ink-light)] mt-1">
+                        {language === 'zh-TW' ? '護照或國際認可身份證明文件' : 'Passport or internationally recognized ID'}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              {/* Japan Specific Requirements */}
+              <section className="hakone-card rounded-lg p-6 border-l-4 border-[var(--hakone-torii)]">
+                <h4 className="flex items-center gap-2 text-lg font-bold mb-4 text-[var(--hakone-torii)]">
+                  <span className="text-xl">🇯🇵</span>
+                  {language === 'zh-TW' ? '日本租車特別要求' : 'Japan Rental Requirements'}
+                </h4>
+                <ul className="space-y-3">
+                  <li className="flex items-start gap-3 text-sm text-[var(--hakone-ink)]">
+                    <CheckCircle2 size={16} className="text-[var(--hakone-forest)] mt-0.5 flex-shrink-0" />
+                    <span>{language === 'zh-TW' ? '國際駕駛執照 (IDP) + 香港駕駛執照正本' : 'International Driving Permit (IDP) + Original Hong Kong License'}</span>
+                  </li>
+                  <li className="flex items-start gap-3 text-sm text-[var(--hakone-ink)]">
+                    <CheckCircle2 size={16} className="text-[var(--hakone-forest)] mt-0.5 flex-shrink-0" />
+                    <span>{language === 'zh-TW' ? '部分供應商要求官方日文翻譯本' : 'Some suppliers require official Japanese translation'}</span>
+                  </li>
+                  <li className="flex items-start gap-3 text-sm text-[var(--hakone-ink)]">
+                    <CheckCircle2 size={16} className="text-[var(--hakone-forest)] mt-0.5 flex-shrink-0" />
+                    <span>{language === 'zh-TW' ? '護照（用於身份驗證）' : 'Passport (for identity verification)'}</span>
+                  </li>
+                </ul>
+              </section>
+
+              {/* Deposit Info */}
+              <section className="hakone-card rounded-lg p-6">
+                <h4 className="flex items-center gap-2 text-lg font-bold mb-4 text-[var(--hakone-ink)]">
+                  <CreditCard size={20} className="text-[var(--hakone-gold)]" />
+                  {language === 'zh-TW' ? '押金資訊' : 'Deposit Information'}
+                </h4>
+                <div className="bg-[var(--hakone-gold)]/10 border border-[var(--hakone-gold)]/30 rounded-lg p-4">
+                  <p className="text-sm text-[var(--hakone-ink)] leading-relaxed">
+                    {language === 'zh-TW'
+                      ? '取車時需提供押金。金額因租車公司而異，將在租車期間凍結於您的信用卡上。押金通常在還車後 28-45 個工作天內退還。'
+                      : 'A security deposit is required at pickup. The amount varies by rental company and is frozen on your credit card during the rental period. Deposits typically refund within 28-45 business days after return.'}
+                  </p>
+                </div>
+              </section>
+
+              {/* Cancellation Policy */}
+              <section className="hakone-card rounded-lg p-6">
+                <h4 className="flex items-center gap-2 text-lg font-bold mb-4 text-[var(--hakone-ink)]">
+                  <Lightbulb size={20} className="text-[var(--hakone-lake)]" />
+                  {language === 'zh-TW' ? '取消政策' : 'Cancellation Policy'}
+                </h4>
+                <p className="text-sm text-[var(--hakone-ink-light)] leading-relaxed">
+                  {language === 'zh-TW'
+                    ? '大部分情況下，取消訂單不會收取額外費用。部分供應商提供有限的免費取消時段。退款通常在 7-30 個工作天內處理。'
+                    : 'Most cancellations incur no additional fees. Some suppliers offer limited free cancellation windows. Refunds process within 7-30 business days.'}
+                </p>
+              </section>
+
+              {/* Trip.com Link */}
+              <div className="flex justify-center pt-4">
+                <a
+                  href="https://hk.trip.com/carhire/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 px-6 py-3 bg-[var(--hakone-forest)] text-white font-bold uppercase tracking-wider rounded-lg hover:bg-[var(--hakone-pine)] transition-colors"
+                >
+                  <Car size={18} />
+                  {language === 'zh-TW' ? '前往 Trip.com 租車' : 'Visit Trip.com Car Rental'}
+                  <ExternalLink size={14} />
+                </a>
+              </div>
             </div>
           )}
         </div>
