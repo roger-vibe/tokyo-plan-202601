@@ -89,16 +89,60 @@ export interface Hotel {
   images?: string[];
 }
 
+export interface RestaurantMenuItem {
+  name: string;
+  price: string;
+  description?: string;
+}
+
+export interface RestaurantMenuSection {
+  category: string;
+  items: RestaurantMenuItem[];
+}
+
 export interface Restaurant {
   name: string;
+  nameJapanese?: string;
   cuisine: string;
   description: string;
+  extendedDescription?: string;
   coordinates: Coordinates;
   priceRange: string;
+  // Contact & Location
+  address?: string;
+  phone?: string;
+  officialWebsite?: string;
+  reservationUrl?: string;
+  // Hours
+  openingHours?: string;
+  closedDays?: string;
+  // Access
+  nearestStation?: string;
+  walkingTime?: string;
+  // Features
+  seatingCapacity?: number;
+  hasPrivateRooms?: boolean;
+  parkingAvailable?: boolean;
+  paymentMethods?: string[];
+  // Highlights & Tips
+  highlights?: string[];
+  specialties?: string[];
+  tips?: string[];
+  // Menu
+  menuHighlights?: RestaurantMenuSection[];
+  // Awards
+  awards?: string[];
   // Tabelog & Visuals
-  tabelogRating?: number; // e.g. 3.58
+  tabelogRating?: number;
   tabelogUrl?: string;
-  imageUrl?: string; // Food photo
+  imageUrl?: string;
+  images?: string[];
+  // Branch info (for chain restaurants)
+  branches?: Array<{
+    name: string;
+    address: string;
+    phone: string;
+  }>;
 }
 
 export interface TripPlan {

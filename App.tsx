@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Language, Theme, TripPlan, Coordinates, Activity, TransitInfo, TransportMode, Hotel } from './types';
+import { Language, Theme, TripPlan, Coordinates, Activity, TransitInfo, TransportMode, Hotel, Restaurant } from './types';
 import { TRANSLATIONS, STATIC_TRIP_PLAN_EN, STATIC_TRIP_PLAN_ZH } from './constants';
 import Header from './components/Header';
 import MapComponent from './components/MapComponent';
-import { MapPin, X, ArrowLeft, Clock, MapPinned, Lightbulb, ArrowDown, Footprints, ExternalLink, Train, Bus, Car, Plane, ChevronRight, Utensils, BedDouble, Star, Phone, Globe, Instagram, Wifi, ParkingCircle, Sparkles, Bath, UtensilsCrossed, ImageIcon, CheckCircle2, FileText, CreditCard, IdCard } from 'lucide-react';
+import { MapPin, X, ArrowLeft, Clock, MapPinned, Lightbulb, ArrowDown, Footprints, ExternalLink, Train, Bus, Car, Plane, ChevronRight, Utensils, BedDouble, Star, Phone, Globe, Instagram, Wifi, ParkingCircle, Sparkles, Bath, UtensilsCrossed, ImageIcon, CheckCircle2, FileText, CreditCard, IdCard, Award, Users, Store, CalendarX2, Bookmark } from 'lucide-react';
 
 const App: React.FC = () => {
   const [theme, setTheme] = useState<Theme>('dark');
@@ -16,7 +16,8 @@ const App: React.FC = () => {
   const [selectedActivity, setSelectedActivity] = useState<Activity | null>(null);
   const [selectedTransit, setSelectedTransit] = useState<TransitInfo | null>(null);
   const [selectedHotel, setSelectedHotel] = useState<Hotel | null>(null);
-  
+  const [selectedRestaurant, setSelectedRestaurant] = useState<Restaurant | null>(null);
+
   const t = TRANSLATIONS[language];
   const tripPlan: TripPlan = language === 'zh-TW' ? STATIC_TRIP_PLAN_ZH : STATIC_TRIP_PLAN_EN;
 
@@ -53,6 +54,10 @@ const App: React.FC = () => {
 
   const closeHotel = () => {
     setSelectedHotel(null);
+  }
+
+  const closeRestaurant = () => {
+    setSelectedRestaurant(null);
   }
 
   // Helper to find matching hotel for any activity at a hotel location
@@ -417,7 +422,11 @@ const App: React.FC = () => {
 
                 <div className="space-y-6">
                   {tripPlan.restaurants.map((rest, i) => (
-                    <div key={i} className="group hakone-card rounded-lg overflow-hidden flex flex-col md:flex-row">
+                    <div
+                      key={i}
+                      className="group hakone-card rounded-lg overflow-hidden flex flex-col md:flex-row cursor-pointer"
+                      onClick={() => setSelectedRestaurant(rest)}
+                    >
 
                       {/* Image Section */}
                       <div className="w-full md:w-1/3 h-48 md:h-auto relative bg-[var(--hakone-mist)] overflow-hidden">
@@ -437,6 +446,16 @@ const App: React.FC = () => {
                         {/* Cuisine Tag */}
                         <div className="absolute top-3 left-3 px-3 py-1.5 bg-[var(--hakone-forest)]/90 backdrop-blur-sm text-white text-xs font-bold uppercase tracking-wider rounded">
                            {rest.cuisine}
+                        </div>
+                        {/* Award Badge for featured restaurants */}
+                        {rest.awards && rest.awards.length > 0 && (
+                          <div className="absolute top-3 right-3 px-2 py-1 bg-[var(--hakone-gold)]/90 backdrop-blur-sm text-white text-[10px] font-bold uppercase tracking-wider rounded flex items-center gap-1">
+                            <Award size={10} /> Tabelog 100
+                          </div>
+                        )}
+                        {/* Arrow indicator */}
+                        <div className="absolute bottom-3 right-3 w-8 h-8 bg-[var(--hakone-forest)] rounded-full flex items-center justify-center shadow-lg z-10 text-white">
+                          <ChevronRight size={18} className="ml-0.5" />
                         </div>
                       </div>
 
@@ -467,7 +486,7 @@ const App: React.FC = () => {
                          {/* Actions */}
                          <div className="flex items-center gap-3 mt-2">
                             <button
-                               onClick={() => openMap([{ position: rest.coordinates, title: rest.name, description: rest.description }])}
+                               onClick={(e) => { e.stopPropagation(); openMap([{ position: rest.coordinates, title: rest.name, description: rest.description }]); }}
                                className="flex items-center gap-2 px-4 py-2 text-xs font-bold uppercase tracking-wider border border-[var(--hakone-border)] rounded-lg hover:border-[var(--hakone-forest)] hover:text-[var(--hakone-forest)] transition-colors"
                             >
                                <MapPinned size={14} /> {t.viewMap}
@@ -478,6 +497,7 @@ const App: React.FC = () => {
                                    href={rest.tabelogUrl}
                                    target="_blank"
                                    rel="noopener noreferrer"
+                                   onClick={(e) => e.stopPropagation()}
                                    className="flex items-center gap-2 px-4 py-2 text-xs font-bold uppercase tracking-wider bg-[var(--hakone-torii)] text-white rounded-lg hover:opacity-90 transition-opacity"
                                 >
                                    Tabelog <ExternalLink size={12} />
@@ -1158,6 +1178,323 @@ const App: React.FC = () => {
                          <div
                             className="bg-[var(--hakone-card)] px-3 py-2 text-xs font-bold uppercase tracking-wider shadow-lg flex items-center gap-2 cursor-pointer hover:bg-[var(--hakone-forest)] hover:text-white transition-colors rounded-lg border border-[var(--hakone-border)]"
                             onClick={() => openMap([{ position: selectedHotel.coordinates, title: selectedHotel.name, description: selectedHotel.description }])}
+                         >
+                            <ExternalLink size={12} /> {t.viewMap}
+                         </div>
+                     </div>
+                 </div>
+
+             </div>
+        </div>
+      )}
+
+      {/* Restaurant Details Modal */}
+      {selectedRestaurant && (
+        <div className="fixed inset-0 z-50 flex flex-col bg-[var(--hakone-bg)] animate-[slideUp_0.3s_ease-out] overflow-y-auto">
+
+             {/* Hero Image Section */}
+             <div className="relative h-[35vh] w-full flex-shrink-0 bg-[var(--hakone-forest)]">
+                 {selectedRestaurant.imageUrl ? (
+                     <img
+                        src={selectedRestaurant.imageUrl}
+                        alt={selectedRestaurant.name}
+                        className="w-full h-full object-cover opacity-90"
+                        draggable="false"
+                     />
+                 ) : (
+                     <div className="w-full h-full flex items-center justify-center text-white/20">
+                         <span className="text-6xl font-serif-jp">美食</span>
+                     </div>
+                 )}
+                 <button
+                    onClick={closeRestaurant}
+                    className="absolute top-6 left-6 z-10 p-3 bg-white/10 backdrop-blur-md text-white hover:bg-white/20 transition-colors rounded-full"
+                 >
+                    <ArrowLeft size={24} />
+                 </button>
+                 <div className="absolute inset-0 bg-gradient-to-t from-[var(--hakone-bg)] to-transparent pointer-events-none" />
+
+                 <div className="absolute bottom-6 left-6 right-6">
+                     <div className="flex items-center gap-2 mb-3">
+                       <span className="inline-block px-3 py-1.5 bg-[var(--hakone-forest)] text-white text-xs font-bold tracking-widest uppercase rounded">
+                           {selectedRestaurant.cuisine}
+                       </span>
+                       {selectedRestaurant.awards && selectedRestaurant.awards.length > 0 && (
+                         <span className="inline-block px-3 py-1.5 bg-[var(--hakone-gold)] text-white text-xs font-bold tracking-widest uppercase rounded flex items-center gap-1">
+                           <Award size={12} /> Award
+                         </span>
+                       )}
+                       <span className="font-mono text-sm font-bold text-[var(--hakone-ink)]">{selectedRestaurant.priceRange}</span>
+                     </div>
+                     <h1 className="text-3xl md:text-4xl font-bold font-serif-jp text-[var(--hakone-ink)] leading-tight">
+                         {selectedRestaurant.name}
+                     </h1>
+                     {selectedRestaurant.nameJapanese && (
+                       <p className="text-lg text-[var(--hakone-ink-light)] mt-1">{selectedRestaurant.nameJapanese}</p>
+                     )}
+                 </div>
+             </div>
+
+             {/* Content */}
+             <div className="flex-grow p-6 md:p-10 max-w-4xl mx-auto w-full space-y-8 pb-20">
+
+                 {/* Rating & Quick Actions */}
+                 <div className="flex flex-wrap items-center gap-4">
+                     {selectedRestaurant.tabelogRating && (
+                       <div className="flex items-center gap-2 px-4 py-2 bg-[var(--hakone-torii)]/10 rounded-lg">
+                         <Star size={20} fill="var(--hakone-torii)" stroke="none" />
+                         <span className="font-bold text-2xl text-[var(--hakone-torii)]">{selectedRestaurant.tabelogRating.toFixed(2)}</span>
+                         <span className="text-sm text-[var(--hakone-ink-light)]">Tabelog</span>
+                       </div>
+                     )}
+                     {selectedRestaurant.officialWebsite && (
+                       <a href={selectedRestaurant.officialWebsite} target="_blank" rel="noopener noreferrer"
+                          className="flex items-center gap-2 px-4 py-2 bg-[var(--hakone-forest)] text-white text-sm font-bold uppercase tracking-wider hover:bg-[var(--hakone-pine)] transition-colors rounded-lg">
+                         <Globe size={16} /> Official Site
+                       </a>
+                     )}
+                     {selectedRestaurant.reservationUrl && (
+                       <a href={selectedRestaurant.reservationUrl} target="_blank" rel="noopener noreferrer"
+                          className="flex items-center gap-2 px-4 py-2 border border-[var(--hakone-forest)] text-[var(--hakone-forest)] text-sm font-bold uppercase tracking-wider hover:bg-[var(--hakone-forest)] hover:text-white transition-colors rounded-lg">
+                         <Bookmark size={16} /> Reserve
+                       </a>
+                     )}
+                     {selectedRestaurant.tabelogUrl && (
+                       <a href={selectedRestaurant.tabelogUrl} target="_blank" rel="noopener noreferrer"
+                          className="flex items-center gap-2 px-4 py-2 bg-[var(--hakone-torii)] text-white text-sm font-bold uppercase tracking-wider hover:opacity-90 transition-opacity rounded-lg">
+                         Tabelog <ExternalLink size={14} />
+                       </a>
+                     )}
+                 </div>
+
+                 {/* Description */}
+                 <p className="text-lg leading-relaxed text-[var(--hakone-ink)]">
+                     {selectedRestaurant.extendedDescription || selectedRestaurant.description}
+                 </p>
+
+                 {/* Awards */}
+                 {selectedRestaurant.awards && selectedRestaurant.awards.length > 0 && (
+                   <div className="p-4 bg-[var(--hakone-gold)]/10 border border-[var(--hakone-gold)]/30 rounded-lg">
+                     <div className="flex items-center gap-2 text-[var(--hakone-gold)] font-bold mb-2">
+                       <Award size={18} />
+                       <span>Awards & Recognition</span>
+                     </div>
+                     <ul className="space-y-1">
+                       {selectedRestaurant.awards.map((award, idx) => (
+                         <li key={idx} className="text-sm text-[var(--hakone-ink)] flex items-center gap-2">
+                           <CheckCircle2 size={14} className="text-[var(--hakone-gold)]" />
+                           {award}
+                         </li>
+                       ))}
+                     </ul>
+                   </div>
+                 )}
+
+                 {/* Basic Info Grid */}
+                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-5 bg-[var(--hakone-bg-alt)] border border-[var(--hakone-border)] rounded-lg">
+                     {selectedRestaurant.address && (
+                       <div className="flex items-start gap-3">
+                         <MapPin size={18} className="text-[var(--hakone-torii)] mt-0.5 flex-shrink-0" />
+                         <div>
+                           <span className="text-xs font-bold uppercase tracking-wider text-[var(--hakone-ink-light)]">{t.address}</span>
+                           <p className="text-sm text-[var(--hakone-ink)]">{selectedRestaurant.address}</p>
+                         </div>
+                       </div>
+                     )}
+                     {selectedRestaurant.phone && (
+                       <div className="flex items-start gap-3">
+                         <Phone size={18} className="text-[var(--hakone-forest)] mt-0.5 flex-shrink-0" />
+                         <div>
+                           <span className="text-xs font-bold uppercase tracking-wider text-[var(--hakone-ink-light)]">Phone</span>
+                           <p className="text-sm text-[var(--hakone-ink)]">{selectedRestaurant.phone}</p>
+                         </div>
+                       </div>
+                     )}
+                     {selectedRestaurant.openingHours && (
+                       <div className="flex items-start gap-3">
+                         <Clock size={18} className="text-[var(--hakone-forest)] mt-0.5 flex-shrink-0" />
+                         <div>
+                           <span className="text-xs font-bold uppercase tracking-wider text-[var(--hakone-ink-light)]">{t.hours}</span>
+                           <p className="text-sm text-[var(--hakone-ink)]">{selectedRestaurant.openingHours}</p>
+                         </div>
+                       </div>
+                     )}
+                     {selectedRestaurant.closedDays && (
+                       <div className="flex items-start gap-3">
+                         <CalendarX2 size={18} className="text-[var(--hakone-torii)] mt-0.5 flex-shrink-0" />
+                         <div>
+                           <span className="text-xs font-bold uppercase tracking-wider text-[var(--hakone-ink-light)]">Closed</span>
+                           <p className="text-sm text-[var(--hakone-ink)]">{selectedRestaurant.closedDays}</p>
+                         </div>
+                       </div>
+                     )}
+                     {selectedRestaurant.nearestStation && (
+                       <div className="flex items-start gap-3">
+                         <Train size={18} className="text-[var(--hakone-lake)] mt-0.5 flex-shrink-0" />
+                         <div>
+                           <span className="text-xs font-bold uppercase tracking-wider text-[var(--hakone-ink-light)]">Access</span>
+                           <p className="text-sm text-[var(--hakone-ink)]">{selectedRestaurant.nearestStation} ({selectedRestaurant.walkingTime})</p>
+                         </div>
+                       </div>
+                     )}
+                     {selectedRestaurant.seatingCapacity && (
+                       <div className="flex items-start gap-3">
+                         <Users size={18} className="text-[var(--hakone-forest)] mt-0.5 flex-shrink-0" />
+                         <div>
+                           <span className="text-xs font-bold uppercase tracking-wider text-[var(--hakone-ink-light)]">Seating</span>
+                           <p className="text-sm text-[var(--hakone-ink)]">{selectedRestaurant.seatingCapacity} seats {selectedRestaurant.hasPrivateRooms && '(Private rooms available)'}</p>
+                         </div>
+                       </div>
+                     )}
+                 </div>
+
+                 {/* Highlights */}
+                 {selectedRestaurant.highlights && selectedRestaurant.highlights.length > 0 && (
+                   <div>
+                     <h3 className="flex items-center gap-2 text-lg font-bold mb-4 text-[var(--hakone-ink)]">
+                       <Sparkles size={20} className="text-[var(--hakone-gold)]" />
+                       Highlights
+                     </h3>
+                     <ul className="space-y-2">
+                       {selectedRestaurant.highlights.map((highlight, idx) => (
+                         <li key={idx} className="flex items-start gap-3 text-sm text-[var(--hakone-ink-light)]">
+                           <CheckCircle2 size={16} className="text-[var(--hakone-forest)] mt-0.5 flex-shrink-0" />
+                           {highlight}
+                         </li>
+                       ))}
+                     </ul>
+                   </div>
+                 )}
+
+                 {/* Specialties */}
+                 {selectedRestaurant.specialties && selectedRestaurant.specialties.length > 0 && (
+                   <div className="p-5 bg-[var(--hakone-torii)]/5 border border-[var(--hakone-torii)]/20 rounded-lg">
+                     <h3 className="flex items-center gap-2 text-lg font-bold mb-4 text-[var(--hakone-torii)]">
+                       <Utensils size={20} />
+                       Signature Dishes
+                     </h3>
+                     <ul className="space-y-2">
+                       {selectedRestaurant.specialties.map((specialty, idx) => (
+                         <li key={idx} className="flex items-start gap-3 text-sm text-[var(--hakone-ink)]">
+                           <span className="block w-2 h-2 mt-1.5 bg-[var(--hakone-torii)] rounded-full flex-shrink-0" />
+                           {specialty}
+                         </li>
+                       ))}
+                     </ul>
+                   </div>
+                 )}
+
+                 {/* Menu Highlights */}
+                 {selectedRestaurant.menuHighlights && selectedRestaurant.menuHighlights.length > 0 && (
+                   <div>
+                     <h3 className="flex items-center gap-2 text-lg font-bold mb-4 text-[var(--hakone-ink)]">
+                       <UtensilsCrossed size={20} className="text-[var(--hakone-forest)]" />
+                       Menu Highlights
+                     </h3>
+                     <div className="space-y-4">
+                       {selectedRestaurant.menuHighlights.map((section, idx) => (
+                         <div key={idx} className="hakone-card rounded-lg overflow-hidden">
+                           <div className="bg-[var(--hakone-forest)] text-white px-4 py-2 text-sm font-bold uppercase tracking-wider">
+                             {section.category}
+                           </div>
+                           <div className="p-4 space-y-3">
+                             {section.items.map((item, itemIdx) => (
+                               <div key={itemIdx} className="flex justify-between items-start gap-4">
+                                 <div className="flex-1">
+                                   <span className="font-bold text-sm text-[var(--hakone-ink)]">{item.name}</span>
+                                   {item.description && (
+                                     <p className="text-xs text-[var(--hakone-ink-light)] mt-0.5">{item.description}</p>
+                                   )}
+                                 </div>
+                                 <span className="font-mono text-sm font-bold text-[var(--hakone-torii)] whitespace-nowrap">{item.price}</span>
+                               </div>
+                             ))}
+                           </div>
+                         </div>
+                       ))}
+                     </div>
+                   </div>
+                 )}
+
+                 {/* Tips */}
+                 {selectedRestaurant.tips && selectedRestaurant.tips.length > 0 && (
+                   <div className="bg-[var(--hakone-bg-alt)] p-6 border-l-4 border-[var(--hakone-gold)] rounded-r-lg">
+                     <h3 className="font-bold text-lg mb-4 flex items-center gap-2 text-[var(--hakone-ink)]">
+                       <Lightbulb size={18} className="text-[var(--hakone-gold)]" />
+                       {t.tips}
+                     </h3>
+                     <ul className="space-y-2">
+                       {selectedRestaurant.tips.map((tip, idx) => (
+                         <li key={idx} className="flex items-start gap-3 text-sm text-[var(--hakone-ink-light)]">
+                           <span className="block w-1.5 h-1.5 mt-1.5 bg-[var(--hakone-forest)] rounded-full flex-shrink-0" />
+                           {tip}
+                         </li>
+                       ))}
+                     </ul>
+                   </div>
+                 )}
+
+                 {/* Other Branches */}
+                 {selectedRestaurant.branches && selectedRestaurant.branches.length > 0 && (
+                   <div>
+                     <h3 className="flex items-center gap-2 text-lg font-bold mb-4 text-[var(--hakone-ink)]">
+                       <Store size={20} className="text-[var(--hakone-forest)]" />
+                       Other Branches
+                     </h3>
+                     <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                       {selectedRestaurant.branches.map((branch, idx) => (
+                         <div key={idx} className="p-4 hakone-card rounded-lg">
+                           <span className="font-bold text-sm text-[var(--hakone-forest)]">{branch.name}</span>
+                           <p className="text-xs text-[var(--hakone-ink-light)] mt-1">{branch.address}</p>
+                           <p className="text-xs text-[var(--hakone-ink)] mt-1 flex items-center gap-1">
+                             <Phone size={10} /> {branch.phone}
+                           </p>
+                         </div>
+                       ))}
+                     </div>
+                   </div>
+                 )}
+
+                 {/* Photo Gallery */}
+                 {selectedRestaurant.images && selectedRestaurant.images.length > 0 && (
+                   <div>
+                     <h3 className="flex items-center gap-2 text-lg font-bold mb-4 text-[var(--hakone-ink)]">
+                       <ImageIcon size={20} className="text-[var(--hakone-forest)]" />
+                       Photos
+                     </h3>
+                     <div className="grid grid-cols-3 gap-2">
+                       {selectedRestaurant.images.map((img, idx) => (
+                         <div key={idx} className="aspect-video overflow-hidden bg-[var(--hakone-mist)] rounded-lg">
+                           <img src={img} alt={`${selectedRestaurant.name} ${idx + 1}`} className="w-full h-full object-cover" loading="lazy" />
+                         </div>
+                       ))}
+                     </div>
+                   </div>
+                 )}
+
+                 {/* Map Preview */}
+                 <div className="h-64 w-full bg-[var(--hakone-mist)] relative group rounded-lg overflow-hidden border border-[var(--hakone-border)]">
+                     <div className="w-full h-full cursor-pointer"
+                          onClick={() => openMap([{ position: selectedRestaurant.coordinates, title: selectedRestaurant.name, description: selectedRestaurant.description }])}>
+                         <MapComponent
+                             markers={[{ position: selectedRestaurant.coordinates, title: selectedRestaurant.name }]}
+                             theme={theme}
+                             zoom={15}
+                         />
+                     </div>
+                     <div className="absolute bottom-4 right-4 flex items-center gap-2">
+                         <a
+                            href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(selectedRestaurant.name)}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            onClick={(e) => e.stopPropagation()}
+                            className="bg-[var(--hakone-card)] px-3 py-2 text-xs font-bold uppercase tracking-wider shadow-lg flex items-center gap-2 hover:bg-[var(--hakone-forest)] hover:text-white transition-colors rounded-lg border border-[var(--hakone-border)]"
+                         >
+                            <MapPin size={12} /> Google Map
+                         </a>
+                         <div
+                            className="bg-[var(--hakone-card)] px-3 py-2 text-xs font-bold uppercase tracking-wider shadow-lg flex items-center gap-2 cursor-pointer hover:bg-[var(--hakone-forest)] hover:text-white transition-colors rounded-lg border border-[var(--hakone-border)]"
+                            onClick={() => openMap([{ position: selectedRestaurant.coordinates, title: selectedRestaurant.name, description: selectedRestaurant.description }])}
                          >
                             <ExternalLink size={12} /> {t.viewMap}
                          </div>

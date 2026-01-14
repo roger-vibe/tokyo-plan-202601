@@ -220,6 +220,88 @@ export const STATIC_TRIP_PLAN_EN: TripPlan = {
   ],
   restaurants: [
     {
+      name: "Ningyocho Imahan (人形町今半)",
+      nameJapanese: "人形町今半 上野広小路店",
+      cuisine: "Sukiyaki & Shabu-shabu",
+      description: "Historic sukiyaki restaurant since 1895. Tabelog 100 selection serving premium Kuroge Wagyu with signature warishita sauce. A quintessential Tokyo dining experience.",
+      extendedDescription: "Established in 1895, Ningyocho Imahan represents over 125 years of dedication to perfecting sukiyaki and shabu-shabu. Their philosophy of '美味一途' (pursuing excellence in flavor) guides every aspect from beef selection to service. Top beef specialists carefully source only the highest quality Kuroge Wagyu based on bloodline, feeding techniques, and breeder passion. The Ueno branch, conveniently located near your hotel, offers an authentic taste of Tokyo's legendary beef cuisine in an elegant 180-seat dining space with private rooms available.",
+      priceRange: "$$$",
+      coordinates: { lat: 35.7077, lng: 139.7727 },
+      address: "6F Hulic Ueno Hirokoji Building, 1-20-11 Ueno, Taito-ku, Tokyo 110-0005",
+      phone: "03-5688-0754",
+      officialWebsite: "https://imahan-tokyo.com/official/",
+      reservationUrl: "https://www.tablecheck.com/en/shops/imahanueno/reserve",
+      openingHours: "Weekdays: 11:30-15:00, 17:00-22:00 (LO 21:00) | Weekends: 11:00-15:00, 17:00-22:00 (LO 21:00)",
+      closedDays: "New Year's Eve and New Year's Day",
+      nearestStation: "Ueno-Hirokoji Station (Exit A4)",
+      walkingTime: "1 minute",
+      seatingCapacity: 180,
+      hasPrivateRooms: true,
+      parkingAvailable: true,
+      paymentMethods: ["Visa", "Mastercard", "JCB", "Amex", "Diners", "UnionPay", "PayPay", "IC Cards"],
+      highlights: [
+        "Established 1895 - Over 125 years of history",
+        "Tabelog Hot Pot 'Tabelog 100' 2024 Selection",
+        "Premium Kuroge Wagyu from contracted farmers",
+        "Signature warishita sauce (soy:mirin:sugar:water = 4:3:2:1)",
+        "Only 3 minutes walk from Minn Ueno hotel",
+        "Private rooms available for intimate dining",
+        "English menu available"
+      ],
+      specialties: [
+        "Sukiyaki - Beef seared with sugar and warishita, dipped in raw egg",
+        "Shabu-shabu - Thinly sliced wagyu in kelp broth with ponzu/sesame sauce",
+        "Amiyaki Steak - Premium cuts grilled on iron grill",
+        "Kaiseki courses - Multi-course Japanese haute cuisine"
+      ],
+      tips: [
+        "Reservations strongly recommended, especially for dinner and weekends",
+        "10% service charge applies to all meals",
+        "Lunch sets offer excellent value (from ¥3,080)",
+        "Try the seasonal Gyu Zanmai course for the ultimate wagyu experience",
+        "Staff can cook sukiyaki tableside or you can cook it yourself"
+      ],
+      menuHighlights: [
+        {
+          category: "Lunch Sets",
+          items: [
+            { name: "Sukiyaki Lunch Set", price: "¥5,940", description: "Perfect introduction to Imahan sukiyaki" },
+            { name: "Gozen Set", price: "¥3,080-¥6,380", description: "Various Japanese set meals" },
+            { name: "IKOI Course", price: "¥8,250-¥16,170", description: "Multi-course lunch experience" }
+          ]
+        },
+        {
+          category: "Dinner - Sukiyaki/Shabu-shabu",
+          items: [
+            { name: "High Quality", price: "¥9,460", description: "Premium wagyu selection" },
+            { name: "Top Quality", price: "¥14,520", description: "Finest grade wagyu" },
+            { name: "Shinobazu Course", price: "¥13,860-¥17,380", description: "Full course with appetizers" },
+            { name: "ZANMAI Course", price: "¥18,480-¥22,000", description: "Ultimate wagyu experience" }
+          ]
+        },
+        {
+          category: "Specialty",
+          items: [
+            { name: "Gyu Zanmai Tenjin Course", price: "¥23,100-¥26,620", description: "Seasonal chef's selection (Recommended)" },
+            { name: "YUEN Omakase Kaiseki", price: "¥25,410", description: "Chef's omakase multi-course" }
+          ]
+        }
+      ],
+      awards: ["Tabelog Hot Pot 'Tabelog 100' 2024"],
+      tabelogRating: 3.60,
+      tabelogUrl: "https://tabelog.com/en/tokyo/A1311/A131101/13005082/",
+      imageUrl: "https://www.justonecookbook.com/wp-content/uploads/2023/01/Sukiyaki-4752-I.jpg",
+      images: [
+        "https://www.justonecookbook.com/wp-content/uploads/2023/01/Sukiyaki-4729-II.jpg",
+        "https://www.justonecookbook.com/wp-content/uploads/2023/01/Sukiyaki-4746-VII.jpg"
+      ],
+      branches: [
+        { name: "Ningyocho Honten (本店)", address: "2-9-12 Nihonbashi-Ningyocho, Chuo-ku", phone: "03-3666-7006" },
+        { name: "Ginza", address: "Ginza Yamato Building 8F, 7-6-19 Ginza, Chuo-ku", phone: "03-3571-5333" },
+        { name: "Shinjuku Takashimaya", address: "Takashimaya Times Square 14F, 5-24-2 Sendagaya, Shibuya-ku", phone: "03-5361-1871" }
+      ]
+    },
+    {
       name: "Sushi Dai (壽司大)",
       cuisine: "Sushi Omakase",
       description: "Legendary sushi at Toyosu Market. Michelin Bib Gourmand omakase for ~¥5,500. Expect early morning queues.",
@@ -947,6 +1029,88 @@ export const STATIC_TRIP_PLAN_ZH: TripPlan = {
     }
   ],
   restaurants: [
+  {
+    name: "人形町今半 上野広小路店",
+    nameJapanese: "Ningyocho Imahan",
+    cuisine: "壽喜燒・涮涮鍋",
+    description: "創業於1895年的百年壽喜燒名店。Tabelog 100精選，使用頂級黑毛和牛配特製割下醬汁。東京必訪的經典和牛體驗。",
+    extendedDescription: "人形町今半創業於1895年，逾125年來堅持「美味一途」的職人精神，從選牛到服務每個環節都追求極致。頂級和牛鑑定師嚴選黑毛和牛，講究血統、飼養方式及畜牧者的熱忱。上野広小路店距離酒店僅3分鐘步程，180個座位的優雅空間設有私人包廂，讓您體驗最正宗的東京和牛料理。",
+    priceRange: "$$$",
+    coordinates: { lat: 35.7077, lng: 139.7727 },
+    address: "東京都台東区上野1-20-11 ヒューリック上野広小路ビル 6F",
+    phone: "03-5688-0754",
+    officialWebsite: "https://imahan-tokyo.com/official/",
+    reservationUrl: "https://www.tablecheck.com/en/shops/imahanueno/reserve",
+    openingHours: "平日：11:30-15:00, 17:00-22:00 (LO 21:00) | 週末假日：11:00-15:00, 17:00-22:00 (LO 21:00)",
+    closedDays: "除夕及元旦",
+    nearestStation: "上野広小路站 (A4出口)",
+    walkingTime: "1分鐘",
+    seatingCapacity: 180,
+    hasPrivateRooms: true,
+    parkingAvailable: true,
+    paymentMethods: ["Visa", "Mastercard", "JCB", "Amex", "Diners", "UnionPay", "PayPay", "IC卡"],
+    highlights: [
+      "1895年創業 - 逾125年歷史",
+      "Tabelog 火鍋類「Tabelog 100」2024精選",
+      "嚴選契約農場頂級黑毛和牛",
+      "獨門割下醬汁（醬油:味醂:砂糖:水 = 4:3:2:1）",
+      "距離Minn上野酒店僅3分鐘步程",
+      "設有私人包廂",
+      "提供英文菜單"
+    ],
+    specialties: [
+      "壽喜燒 - 牛肉以砂糖和割下醬煎香後沾生蛋享用",
+      "涮涮鍋 - 薄切和牛在昆布高湯中輕涮，配柚子醋或芝麻醬",
+      "網燒牛排 - 頂級部位在鐵板上香煎",
+      "懷石料理 - 多道式日本高級料理"
+    ],
+    tips: [
+      "強烈建議預約，尤其是晚餐及週末",
+      "所有餐點加收10%服務費",
+      "午餐套餐性價比極高（¥3,080起）",
+      "推薦季節限定「牛三昧天神」套餐體驗極致和牛",
+      "可選擇由服務員桌邊烹調或自行涮煮"
+    ],
+    menuHighlights: [
+      {
+        category: "午餐套餐",
+        items: [
+          { name: "壽喜燒午餐套餐", price: "¥5,940", description: "入門今半壽喜燒的最佳選擇" },
+          { name: "御膳套餐", price: "¥3,080-¥6,380", description: "多款日式定食" },
+          { name: "憩套餐", price: "¥8,250-¥16,170", description: "多道式午餐體驗" }
+        ]
+      },
+      {
+        category: "晚餐 - 壽喜燒/涮涮鍋",
+        items: [
+          { name: "上等", price: "¥9,460", description: "優質和牛精選" },
+          { name: "特選", price: "¥14,520", description: "頂級和牛" },
+          { name: "不忍套餐", price: "¥13,860-¥17,380", description: "含前菜的完整套餐" },
+          { name: "三昧套餐", price: "¥18,480-¥22,000", description: "極致和牛體驗" }
+        ]
+      },
+      {
+        category: "特選推薦",
+        items: [
+          { name: "牛三昧天神套餐", price: "¥23,100-¥26,620", description: "季節限定主廚精選（強烈推薦）" },
+          { name: "遊宴懷石", price: "¥25,410", description: "主廚發辦多道式懷石" }
+        ]
+      }
+    ],
+    awards: ["Tabelog 火鍋類「Tabelog 100」2024"],
+    tabelogRating: 3.60,
+    tabelogUrl: "https://tabelog.com/en/tokyo/A1311/A131101/13005082/",
+    imageUrl: "https://www.justonecookbook.com/wp-content/uploads/2023/01/Sukiyaki-4752-I.jpg",
+    images: [
+      "https://www.justonecookbook.com/wp-content/uploads/2023/01/Sukiyaki-4729-II.jpg",
+      "https://www.justonecookbook.com/wp-content/uploads/2023/01/Sukiyaki-4746-VII.jpg"
+    ],
+    branches: [
+      { name: "人形町本店", address: "中央區日本橋人形町2-9-12", phone: "03-3666-7006" },
+      { name: "銀座店", address: "中央區銀座7-6-19 銀座大和大廈8F", phone: "03-3571-5333" },
+      { name: "新宿高島屋店", address: "澀谷區千馱谷5-24-2 高島屋時代廣場14F", phone: "03-5361-1871" }
+    ]
+  },
   {
     name: "壽司大 (Sushi Dai)",
     cuisine: "壽司 Omakase",
