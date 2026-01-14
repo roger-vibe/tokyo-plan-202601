@@ -26,7 +26,12 @@
       "WebFetch(domain:www.google.com)",
       "WebFetch(domain:www.navitime.co.jp)",
       "WebFetch(domain:mansion-market.com)",
-      "WebFetch(domain:www.geocoding.jp)"
+      "WebFetch(domain:www.geocoding.jp)",
+      "WebFetch(domain:maps.app.goo.gl)",
+      "WebFetch(domain:hk.trip.com)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push)"
     ]
   }
 }

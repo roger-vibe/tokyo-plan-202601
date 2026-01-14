@@ -220,34 +220,54 @@ export const STATIC_TRIP_PLAN_EN: TripPlan = {
   ],
   restaurants: [
     {
-      name: "Sushi no Midori",
-      cuisine: "Sushi",
-      description: "High-quality sushi at reasonable prices. Known for generous portion sizes and long queues.",
+      name: "Sushi Dai (壽司大)",
+      cuisine: "Sushi Omakase",
+      description: "Legendary sushi at Toyosu Market. Michelin Bib Gourmand omakase for ~¥5,500. Expect early morning queues.",
+      priceRange: "$$$",
+      coordinates: { lat: 35.6465, lng: 139.7869 },
+      tabelogRating: 3.65,
+      tabelogUrl: "https://tabelog.com/en/tokyo/A1313/A131307/13227096/",
+      imageUrl: "https://tblg.k-img.com/restaurant/images/Rvw/321079/640x640_rect_e95256b4b96e6aabbb02d9e4e5c8469e.jpg"
+    },
+    {
+      name: "Sankouen (三幸園)",
+      cuisine: "Yakiniku",
+      description: "Beloved yakiniku in Azabu-Juban known for quality black wagyu beef and warm hospitality. Great lunch sets.",
       priceRange: "$$",
-      coordinates: { lat: 35.6596, lng: 139.6989 },
-      tabelogRating: 3.58,
-      tabelogUrl: "https://tabelog.com/en/tokyo/A1303/A130301/13004624/dtlphotolst/1/",
+      coordinates: { lat: 35.6559, lng: 139.7359 },
+      tabelogRating: 3.52,
+      tabelogUrl: "https://tabelog.com/en/tokyo/A1307/A130702/13002823/",
       imageUrl: "https://tblg.k-img.com/restaurant/images/Rvw/112660/640x640_rect_112660756.jpg"
     },
     {
-      name: "Ichiran Ramen",
-      cuisine: "Ramen",
-      description: "Famous Tonkotsu ramen with individual booths. A must-visit for first-timers.",
-      priceRange: "$",
-      coordinates: { lat: 35.6926, lng: 139.7012 },
-      tabelogRating: 3.08,
-      tabelogUrl: "https://tabelog.com/en/tokyo/A1304/A130401/13192087/dtlphotolst/1/",
+      name: "Ginza Katsukami 2 (かつかみ弐)",
+      cuisine: "Tonkatsu Omakase",
+      description: "Michelin Bib Gourmand tonkatsu omakase. Experience different pork cuts in an intimate counter setting.",
+      priceRange: "$$$",
+      coordinates: { lat: 35.6700, lng: 139.7627 },
+      tabelogRating: 3.58,
+      tabelogUrl: "https://tabelog.com/en/tokyo/A1301/A130101/13225476/",
       imageUrl: "https://tblg.k-img.com/restaurant/images/Rvw/153169/640x640_rect_153169722.jpg"
     },
     {
-      name: "Gonpachi Nishi-Azabu",
-      cuisine: "Izakaya",
-      description: "The 'Kill Bill' restaurant. Lively atmosphere with traditional wooden architecture.",
-      priceRange: "$$$",
-      coordinates: { lat: 35.6606, lng: 139.7238 },
-      tabelogRating: 3.42,
-      tabelogUrl: "https://tabelog.com/en/tokyo/A1307/A130701/13005298/dtlphotolst/3/",
+      name: "Gyutan no Lemon (牛タンの檸檬)",
+      cuisine: "Beef Tongue",
+      description: "Thick-cut charcoal-grilled beef tongue specialty in Shinjuku. The 'Kiwami' set is a must-try.",
+      priceRange: "$$",
+      coordinates: { lat: 35.6961, lng: 139.6979 },
+      tabelogRating: 3.45,
+      tabelogUrl: "https://tabelog.com/en/tokyo/A1304/A130401/13264721/",
       imageUrl: "https://tblg.k-img.com/restaurant/images/Rvw/248736/640x640_rect_6d32f903d38eb7ee6c263fb0185983fd.jpg"
+    },
+    {
+      name: "Stabler Shimokitazawa",
+      cuisine: "Meat Sandwich",
+      description: "American-style 300g steak sandwich on fluffy shokupan. Perfect for meat lovers exploring trendy Shimokitazawa.",
+      priceRange: "$$",
+      coordinates: { lat: 35.6609, lng: 139.6685 },
+      tabelogRating: 3.40,
+      tabelogUrl: "https://tabelog.com/en/tokyo/A1318/A131802/13254078/",
+      imageUrl: "https://tblg.k-img.com/restaurant/images/Rvw/233456/640x640_rect_89a1f3d5e7c9b2a4f6d8e1c3a5b7f9d2.jpg"
     }
   ],
   days: [
@@ -928,9 +948,9 @@ export const STATIC_TRIP_PLAN_ZH: TripPlan = {
   ],
   restaurants: [
   {
-    name: "Sushi Dai (壽司大)",
-    cuisine: "Sushi",
-    description: "豐洲市場排名第一的壽司名店，主廚發辦（Omakase）套餐性價比極高，需清晨排隊。",
+    name: "壽司大 (Sushi Dai)",
+    cuisine: "壽司 Omakase",
+    description: "豐洲市場傳奇壽司店，米其林必比登推薦。Omakase約¥5,500，需清晨排隊。",
     priceRange: "$$$",
     coordinates: { lat: 35.6465, lng: 139.7869 },
     tabelogRating: 3.65,
@@ -938,94 +958,44 @@ export const STATIC_TRIP_PLAN_ZH: TripPlan = {
     imageUrl: "https://tblg.k-img.com/restaurant/images/Rvw/321079/640x640_rect_e95256b4b96e6aabbb02d9e4e5c8469e.jpg"
   },
   {
-    name: "NARISAWA",
-    cuisine: "Innovative Satoyama",
-    description: "亞洲五十最佳餐廳常客，將日本自然風土融入法式料理的「里山料理」先驅。",
-    priceRange: "$$$$",
-    coordinates: { lat: 35.6723, lng: 139.7231 },
-    tabelogRating: 4.29,
-    tabelogUrl: "https://tabelog.com/en/tokyo/A1306/A130603/13005423/",
-    imageUrl: "https://tblg.k-img.com/restaurant/images/Rvw/227919/640x640_rect_7f8e3c6f8a9d4e2b9f1d5a3c8e7f2b1a.jpg"
+    name: "三幸園 麻布十番",
+    cuisine: "燒肉",
+    description: "麻布十番人氣燒肉店，以優質黑毛和牛和熱情服務聞名。午餐套餐超值。",
+    priceRange: "$$",
+    coordinates: { lat: 35.6559, lng: 139.7359 },
+    tabelogRating: 3.52,
+    tabelogUrl: "https://tabelog.com/en/tokyo/A1307/A130702/13002823/",
+    imageUrl: "https://tblg.k-img.com/restaurant/images/Rvw/112660/640x640_rect_112660756.jpg"
   },
   {
-    name: "Rokurinsha (六厘舍)",
-    cuisine: "Tsukemen",
-    description: "東京拉麵街的排隊王者，以超濃郁豚骨魚介湯頭與極太麵條聞名。",
-    priceRange: "$",
-    coordinates: { lat: 35.6800, lng: 139.7686 },
-    tabelogRating: 3.77,
-    tabelogUrl: "https://tabelog.com/en/tokyo/A1302/A130201/13093047/",
+    name: "銀座 かつかみ弐",
+    cuisine: "炸豬排 Omakase",
+    description: "米其林必比登炸豬排Omakase，在吧台座位體驗不同部位的豬排。需預約。",
+    priceRange: "$$$",
+    coordinates: { lat: 35.6700, lng: 139.7627 },
+    tabelogRating: 3.58,
+    tabelogUrl: "https://tabelog.com/en/tokyo/A1301/A130101/13225476/",
+    imageUrl: "https://tblg.k-img.com/restaurant/images/Rvw/153169/640x640_rect_153169722.jpg"
+  },
+  {
+    name: "牛タンの檸檬 新宿",
+    cuisine: "牛舌",
+    description: "新宿人氣牛舌專門店，厚切炭火燒牛舌極致美味。「極」套餐必點。",
+    priceRange: "$$",
+    coordinates: { lat: 35.6961, lng: 139.6979 },
+    tabelogRating: 3.45,
+    tabelogUrl: "https://tabelog.com/en/tokyo/A1304/A130401/13264721/",
+    imageUrl: "https://tblg.k-img.com/restaurant/images/Rvw/248736/640x640_rect_6d32f903d38eb7ee6c263fb0185983fd.jpg"
+  },
+  {
+    name: "Stabler 下北澤",
+    cuisine: "肉三明治",
+    description: "美式風格300g牛排三明治，搭配鬆軟生吐司。下北澤潮流街區必訪。",
+    priceRange: "$$",
+    coordinates: { lat: 35.6609, lng: 139.6685 },
+    tabelogRating: 3.40,
+    tabelogUrl: "https://tabelog.com/en/tokyo/A1318/A131802/13254078/",
     imageUrl: "https://tblg.k-img.com/restaurant/images/Rvw/233456/640x640_rect_89a1f3d5e7c9b2a4f6d8e1c3a5b7f9d2.jpg"
-  },
-  {
-    name: "Tonkatsu Maisen Aoyama (炸豬排 舞泉)",
-    cuisine: "Tonkatsu",
-    description: "由公共澡堂改建的傳奇店舖，招牌「黑豚腰內肉」軟嫩到可以用筷子切開。",
-    priceRange: "$$",
-    coordinates: { lat: 35.6661, lng: 139.7114 },
-    tabelogRating: 3.44,
-    tabelogUrl: "https://tabelog.com/en/tokyo/A1306/A130602/13001850/",
-    imageUrl: "https://tblg.k-img.com/restaurant/images/Rvw/245678/640x640_rect_f3d7b9e2c5a8e1f4d6b3a7c9e2f5a8d1.jpg"
-  },
-  {
-    name: "AFURI Ebisu",
-    cuisine: "Ramen",
-    description: "清爽系拉麵代表，金黃色的雞湯搭配高知縣產柚子汁，香氣迷人。",
-    priceRange: "$",
-    coordinates: { lat: 35.6482, lng: 139.7107 },
-    tabelogRating: 3.49,
-    tabelogUrl: "https://tabelog.com/en/tokyo/A1303/A130302/13005500/",
-    imageUrl: "https://tblg.k-img.com/restaurant/images/Rvw/218945/640x640_rect_a7f5c3d9e2b6a8f1c4d7e9b2f5a8c3d6.jpg"
-  },
-  {
-    name: "Yakiniku Jumbo Hongo (燒肉 Jumbo)",
-    cuisine: "Yakiniku",
-    description: "預約困難店，A5黑毛和牛的「野原燒」（像壽喜燒一樣沾蛋液吃）是必點。",
-    priceRange: "$$$",
-    coordinates: { lat: 35.7068, lng: 139.7606 },
-    tabelogRating: 4.03,
-    tabelogUrl: "https://tabelog.com/en/tokyo/A1310/A131004/13110601/",
-    imageUrl: "https://tblg.k-img.com/restaurant/images/Rvw/198765/640x640_rect_c9e3f7a2d5b8f1c4e6a9d2f7b5c8e3a1.jpg"
-  },
-  {
-    name: "Tamawarai (玉笑)",
-    cuisine: "Soba",
-    description: "表參道巷弄中的米其林一星，自家磨粉、手打的蕎麥麵香氣濃郁，口感極佳。",
-    priceRange: "$$",
-    coordinates: { lat: 35.6672, lng: 139.7049 },
-    tabelogRating: 3.90,
-    tabelogUrl: "https://tabelog.com/en/tokyo/A1306/A130601/13129390/",
-    imageUrl: "https://tblg.k-img.com/restaurant/images/Rvw/167890/640x640_rect_d4f8a3c7e1b9f5d2a8c6e4b7f9a2d5c8.jpg"
-  },
-  {
-    name: "Tokyo Shiba Tofuya Ukai",
-    cuisine: "Kaiseki",
-    description: "東京鐵塔腳下的廣闊日式庭園，提供優雅的豆腐懷石料理，適合特殊慶祝。",
-    priceRange: "$$$",
-    coordinates: { lat: 35.6558, lng: 139.7478 },
-    tabelogRating: 3.67,
-    tabelogUrl: "https://tabelog.com/en/tokyo/A1314/A131401/13019665/",
-    imageUrl: "https://tblg.k-img.com/restaurant/images/Rvw/234567/640x640_rect_b8f2e6a4c9d7f1e3a5b9d8c2f6e4a7c1.jpg"
-  },
-  {
-    name: "Ginza Kagari Roppongi Hills",
-    cuisine: "Ramen",
-    description: "以「雞白湯Soba」聞名，湯頭濃郁如奶油濃湯，配上時令蔬菜，擺盤如法式料理。",
-    priceRange: "$",
-    coordinates: { lat: 35.6604, lng: 139.7292 },
-    tabelogRating: 3.54,
-    tabelogUrl: "https://tabelog.com/en/tokyo/A1307/A130701/13240620/",
-    imageUrl: "https://tblg.k-img.com/restaurant/images/Rvw/210987/640x640_rect_e7c5a9f3d2b8e6a1c4f9d7b3e8a5c2f6.jpg"
-  },
-  {
-    name: "Fuunji (風雲兒)",
-    cuisine: "Tsukemen",
-    description: "新宿最強沾麵之一，濃厚的雞白湯魚介沾汁讓人一試成主顧。",
-    priceRange: "$",
-    coordinates: { lat: 35.6872, lng: 139.6976 },
-    tabelogRating: 3.78,
-    tabelogUrl: "https://tabelog.com/en/tokyo/A1304/A130401/13044091/",
-    imageUrl: "https://tblg.k-img.com/restaurant/images/Rvw/245321/640x640_rect_f9d3b7e5a2c8f6e1d4a9c7f3b8e2d6a4.jpg"
   }
   ],
   days: [
