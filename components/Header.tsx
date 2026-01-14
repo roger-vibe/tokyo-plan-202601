@@ -51,13 +51,12 @@ const Header: React.FC<HeaderProps> = ({ theme, setTheme, language, setLanguage 
           {/* Language Toggle */}
           <button
             onClick={() => setLanguage(language === 'en' ? 'zh-TW' : 'en')}
-            className="relative px-3 py-1.5 text-sm font-medium tracking-wide text-[var(--hakone-ink-light)] hover:text-[var(--hakone-forest)] transition-colors group"
+            className="relative px-3 py-1.5 text-sm font-medium tracking-wide text-[var(--hakone-forest)] border border-[var(--hakone-forest)]/30 rounded-lg"
             aria-label="Toggle Language"
           >
             <span className="font-serif-jp">
               {language === 'en' ? '中文' : 'ENG'}
             </span>
-            <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-[var(--hakone-forest)] transition-all duration-300 group-hover:w-full" />
           </button>
 
           {/* Divider */}
@@ -66,13 +65,13 @@ const Header: React.FC<HeaderProps> = ({ theme, setTheme, language, setLanguage 
           {/* Theme Toggle */}
           <button
             onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-            className="p-2 rounded-full text-[var(--hakone-ink-light)] hover:text-[var(--hakone-gold)] hover:bg-[var(--hakone-mist)] transition-all duration-300"
+            className="p-2 rounded-full text-[var(--hakone-gold)] bg-[var(--hakone-mist)]"
             aria-label="Toggle Theme"
           >
             {theme === 'dark' ? (
-              <Moon size={18} strokeWidth={1.5} className="transition-transform hover:rotate-12" />
+              <Moon size={18} strokeWidth={1.5} />
             ) : (
-              <Sun size={18} strokeWidth={1.5} className="transition-transform hover:rotate-45" />
+              <Sun size={18} strokeWidth={1.5} />
             )}
           </button>
         </div>

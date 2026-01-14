@@ -295,7 +295,7 @@ const App: React.FC = () => {
                                               alt={act.locationName}
                                               loading="lazy"
                                               draggable="false"
-                                              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                                              className="w-full h-full object-cover"
                                           />
                                           {/* Gradient overlay for text readability */}
                                           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent pointer-events-none" />
@@ -304,7 +304,7 @@ const App: React.FC = () => {
                                               {act.time}
                                           </div>
                                           {/* Arrow button */}
-                                          <div className="absolute bottom-3 right-3 w-8 h-8 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg z-10 group-hover:bg-[var(--hakone-forest)] group-hover:text-white transition-all duration-300">
+                                          <div className="absolute bottom-3 right-3 w-8 h-8 bg-[var(--hakone-forest)] rounded-full flex items-center justify-center shadow-lg z-10 text-white">
                                               <ChevronRight size={18} className="ml-0.5" />
                                           </div>
                                           {/* Activity title overlay */}
@@ -347,15 +347,15 @@ const App: React.FC = () => {
                             onClick={() => setSelectedTransit(act.transitToNext || null)}
                             className="mb-12 cursor-pointer select-none"
                          >
-                             <div className="relative border border-dashed border-[var(--hakone-lake)]/40 bg-[var(--hakone-lake)]/5 p-3 hover:bg-[var(--hakone-lake)]/10 transition-colors flex items-center gap-4 group rounded-lg">
+                             <div className="relative border border-dashed border-[var(--hakone-lake)]/40 bg-[var(--hakone-lake)]/10 p-3 flex items-center gap-4 group rounded-lg">
                                  {/* Icon */}
-                                 <div className="w-8 h-8 rounded-full bg-[var(--hakone-card)] border border-[var(--hakone-border)] flex items-center justify-center text-[var(--hakone-lake)] group-hover:text-[var(--hakone-forest)] transition-colors">
+                                 <div className="w-8 h-8 rounded-full bg-[var(--hakone-card)] border border-[var(--hakone-border)] flex items-center justify-center text-[var(--hakone-forest)]">
                                      {getTransportIcon(act.transitToNext.options[0].mode, 14)}
                                  </div>
 
                                  <div className="flex-1">
                                     <div className="flex items-center justify-between">
-                                        <span className="text-xs font-bold uppercase tracking-wider text-[var(--hakone-ink-light)] group-hover:text-[var(--hakone-ink)] transition-colors">
+                                        <span className="text-xs font-bold uppercase tracking-wider text-[var(--hakone-ink)]">
                                             Next: {act.transitToNext.destination}
                                         </span>
                                         <div className="flex items-center text-[var(--hakone-forest)]">
@@ -401,7 +401,7 @@ const App: React.FC = () => {
                               src={getThumbnailUrl(rest.imageUrl)}
                               alt={rest.name}
                               loading="lazy"
-                              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                              className="w-full h-full object-cover"
                               draggable="false"
                            />
                         ) : (
@@ -419,7 +419,7 @@ const App: React.FC = () => {
                       <div className="flex-1 p-6 flex flex-col justify-between bg-[var(--hakone-card)]">
                          <div>
                             <div className="flex justify-between items-start mb-2">
-                               <h4 className="font-bold text-xl group-hover:text-[var(--hakone-forest)] transition-colors">{rest.name}</h4>
+                               <h4 className="font-bold text-xl text-[var(--hakone-forest)]">{rest.name}</h4>
                                {rest.priceRange && (
                                    <span className="font-mono text-sm font-bold text-[var(--hakone-ink-light)]">{rest.priceRange}</span>
                                )}
@@ -673,7 +673,7 @@ const App: React.FC = () => {
                              <div key={i} className="flex flex-col gap-3 p-4 hakone-card rounded-lg group">
                                  <div className="flex gap-4">
                                     <div className="mt-1">
-                                        <div className="w-10 h-10 rounded-full bg-[var(--hakone-lake)]/10 flex items-center justify-center text-[var(--hakone-lake)] group-hover:bg-[var(--hakone-forest)]/10 group-hover:text-[var(--hakone-forest)] transition-colors">
+                                        <div className="w-10 h-10 rounded-full bg-[var(--hakone-forest)]/10 flex items-center justify-center text-[var(--hakone-forest)]">
                                             {getTransportIcon(opt.mode, 20)}
                                         </div>
                                     </div>
