@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>箱根 Hakone Plan</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Shippori+Mincho:wght@400;500;700&family=Zen+Old+Mincho:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <style>
+      /* ===== HAKONE DESIGN SYSTEM ===== */
+      :root {
+        /* Light Mode - Inspired by morning mist over Lake Ashi */
+        --hakone-bg: #FAF9F7;
+        --hakone-bg-alt: #F5F4F1;
+        --hakone-card: #FFFFFF;
+        --hakone-ink: #1C2B28;
+        --hakone-ink-light: #4A5C58;
+
+        /* Hakone Primary Colors */
+        --hakone-forest: #1E453E;      /* Deep forest green */
+        --hakone-pine: #2D5A4E;        /* Pine needle green */
+        --hakone-torii: #B54434;       /* Vermillion torii gate */
+        --hakone-gold: #C4994B;        /* Golden sunset on lake */
+        --hakone-lake: #4A7B8C;        /* Lake Ashi blue */
+        --hakone-mist: #E8E6E2;        /* Morning mist */
+        --hakone-steam: rgba(255,255,255,0.6); /* Onsen steam */
+
+        /* Semantic */
+        --hakone-border: #E5E3DF;
+        --hakone-border-subtle: #F0ECEA;
+      }
+
+      .dark {
+        /* Dark Mode - Inspired by moonlit night over Hakone */
+        --hakone-bg: #0D1614;
+        --hakone-bg-alt: #131F1C;
+        --hakone-card: #1A2825;
+        --hakone-ink: #E8E6E2;
+        --hakone-ink-light: #9BA8A5;
+
+        /* Dark Hakone Colors */
+        --hakone-forest: #6B9B8F;      /* Moonlit forest */
+        --hakone-pine: #7FB3A4;        /* Night pine */
+        --hakone-torii: #D4796B;       /* Lantern-lit torii */
+        --hakone-gold: #D4B16A;        /* Moon reflection */
+        --hakone-lake: #6A9BAC;        /* Night lake */
+        --hakone-mist: #2A3835;        /* Night mist */
+        --hakone-steam: rgba(255,255,255,0.08);
+
+        --hakone-border: #2A3835;
+        --hakone-border-subtle: #1F2C29;
+      }
+
+      body {
+        font-family: 'Noto Sans JP', sans-serif;
+        background-color: var(--hakone-bg);
+        color: var(--hakone-ink);
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+
+      body::-webkit-scrollbar {
+        display: none;
+      }
+
+      .font-serif-jp {
+        font-family: 'Zen Old Mincho', 'Shippori Mincho', serif;
+      }
+
+      /* Hide scrollbar in all elements */
+      * {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+      *::-webkit-scrollbar {
+        display: none;
+      }
+
+      /* ===== HAKONE ANIMATIONS ===== */
+
+      /* Gentle steam/mist rising animation */
+      @keyframes steamRise {
+        0%, 100% {
+          opacity: 0.3;
+          transform: translateY(0) scale(1);
+        }
+        50% {
+          opacity: 0.6;
+          transform: translateY(-10px) scale(1.05);
+        }
+      }
+
+      /* Water ripple effect */
+      @keyframes ripple {
+        0% {
+          transform: scale(1);
+          opacity: 0.4;
+        }
+        100% {
+          transform: scale(1.5);
+          opacity: 0;
+        }
+      }
+
+      /* Gentle fade in */
+      @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+
+      /* Slide up animation */
+      @keyframes slideUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Mountain silhouette fade */
+      @keyframes mountainFade {
+        0%, 100% { opacity: 0.03; }
+        50% { opacity: 0.06; }
+      }
+
+      /* ===== HAKONE UTILITY CLASSES ===== */
+
+      .hakone-steam {
+        animation: steamRise 6s ease-in-out infinite;
+      }
+
+      .hakone-ripple::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        border: 2px solid var(--hakone-lake);
+        animation: ripple 2s ease-out infinite;
+      }
+
+      .hakone-card {
+        background: var(--hakone-card);
+        border: 1px solid var(--hakone-border);
+        transition: all 0.3s ease;
+      }
+
+      .hakone-card:hover {
+        border-color: var(--hakone-forest);
+        box-shadow: 0 8px 32px rgba(30, 69, 62, 0.12);
+      }
+
+      .dark .hakone-card:hover {
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+      }
+
+      /* Torii gate accent border */
+      .hakone-torii-border {
+        border-left: 3px solid var(--hakone-torii);
+      }
+
+      /* Forest accent */
+      .hakone-forest-accent {
+        background: linear-gradient(135deg, var(--hakone-forest) 0%, var(--hakone-pine) 100%);
+      }
+
+      /* Lake gradient */
+      .hakone-lake-gradient {
+        background: linear-gradient(180deg, var(--hakone-lake) 0%, transparent 100%);
+      }
+
+      /* ===== MOUNTAIN SILHOUETTE DECORATION ===== */
+      .hakone-mountain-bg {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hakone-mountain-bg::before {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 200px;
+        background:
+          linear-gradient(165deg, transparent 40%, var(--hakone-mist) 70%),
+          linear-gradient(195deg, transparent 35%, var(--hakone-mist) 75%);
+        opacity: 0.3;
+        pointer-events: none;
+        animation: mountainFade 8s ease-in-out infinite;
+      }
+
+      /* ===== LEAFLET CUSTOMIZATIONS ===== */
+      .leaflet-popup-content-wrapper, .leaflet-popup-tip {
+        background: var(--hakone-card);
+        color: var(--hakone-ink);
+        border-radius: 4px;
+        box-shadow: 0 4px 16px rgba(30, 69, 62, 0.15);
+        border: 1px solid var(--hakone-border);
+      }
+
+      .dark .leaflet-popup-content-wrapper, .dark .leaflet-popup-tip {
+        background: var(--hakone-card);
+        color: var(--hakone-ink);
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+      }
+
+      .leaflet-container {
+        font-family: 'Noto Sans JP', sans-serif !important;
+      }
+
+      /* ===== SELECTION COLORS ===== */
+      ::selection {
+        background: var(--hakone-forest);
+        color: white;
+      }
+
+      .dark ::selection {
+        background: var(--hakone-gold);
+        color: black;
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.32.0",
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.556.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.1/",
+    "react/": "https://aistudiocdn.com/react@^19.2.1/",
+    "react": "https://aistudiocdn.com/react@^19.2.1"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body>
+    <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>

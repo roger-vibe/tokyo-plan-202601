@@ -1,0 +1,32 @@
+{
+  "permissions": {
+    "allow": [
+      "WebSearch",
+      "WebFetch(domain:www.timeanddate.com)",
+      "WebFetch(domain:www.airportia.com)",
+      "WebFetch(domain:commons.wikimedia.org)",
+      "WebFetch(domain:fhr.yumotofujiya.jp)",
+      "WebFetch(domain:dormy-hotels.com)",
+      "WebFetch(domain:staytuned.asia)",
+      "WebFetch(domain:www.booking.com)",
+      "WebFetch(domain:travel.rakuten.co.jp)",
+      "WebFetch(domain:www.ikyu.com)",
+      "WebFetch(domain:www.yumotofujiya.jp)",
+      "WebFetch(domain:www.narita-airport.jp)",
+      "WebFetch(domain:www.japan.travel)",
+      "WebFetch(domain:hakone-japan.com)",
+      "WebFetch(domain:www.gotokyo.org)",
+      "Bash(find:*)",
+      "WebFetch(domain:www.jalan.net)",
+      "WebFetch(domain:nissan-rentacar.com)",
+      "WebFetch(domain:en.tabirai.net)",
+      "WebFetch(domain:worldnet-rentacar.co.jp)",
+      "WebFetch(domain:www.fujiyahotel.co.jp)",
+      "WebFetch(domain:www.hakonenavi.jp)",
+      "WebFetch(domain:www.google.com)",
+      "WebFetch(domain:www.navitime.co.jp)",
+      "WebFetch(domain:mansion-market.com)",
+      "WebFetch(domain:www.geocoding.jp)"
+    ]
+  }
+}
